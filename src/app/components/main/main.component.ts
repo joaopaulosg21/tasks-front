@@ -33,13 +33,27 @@ export class MainComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
-    //Pega o id do item que está no array de tasks
-    const id = event.item.element.nativeElement.textContent?.split(" ")[1];
+    //Pega o id dos elementos que estão sendo trocados
+    const idfirst = event.previousContainer.element.nativeElement.textContent?.split(" ")[2];
+    const idSecond = event.previousContainer.element.nativeElement.textContent?.split(" ")[11];
+
+    //Faz o swamp entre os valores de presentationOrder
+    this.swap(this.tasks.filter(i => i.id == idfirst)[0], this.tasks.filter(i => i.id == idSecond)[0]);
 
     //Altera o atributo presentationOrder para atualizar a posição de exibição do elemento 
-    this.tasks.filter(i => i.id == id)[0].presentationOrder = event.currentIndex;
-    
-    this.taskService.updateOrder(Number(id), event.currentIndex).subscribe({
+    const firstIndex = this.tasks.filter(i => i.id == idfirst)[0].presentationOrder;
+    this.taskService.updateOrder(Number(idfirst), firstIndex).subscribe({
+      next: (data: any) => {
+        console.log("Atualizado");
+        this.ngOnInit();
+      },
+      error: err => {
+        console.log("DEU ERRO " + err.message);
+      }
+    });
+
+    const secondIndex = this.tasks.filter(i => i.id == idSecond)[0].presentationOrder;
+    this.taskService.updateOrder(Number(idSecond), secondIndex).subscribe({
       next: (data: any) => {
         console.log("Atualizado");
         this.ngOnInit();
@@ -53,8 +67,6 @@ export class MainComponent implements OnInit {
   findAll() {
     this.taskService.findAll().subscribe((data: any) => {
       this.tasks = data.content;
-
-      console.log(this.tasks)
     });
   }
 
@@ -80,5 +92,11 @@ export class MainComponent implements OnInit {
         taskName: taskName
       }
     });
+  }
+
+  swap(firstTask: any, secondTask: any) {
+    const temp = firstTask.presentationOrder;
+    firstTask.presentationOrder = secondTask.presentationOrder;
+    secondTask.presentationOrder = temp;
   }
 }
