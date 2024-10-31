@@ -21,4 +21,8 @@ export class TaskService {
   addTask(data:TaskRegisterData) {
     return this.http.post("http://localhost:8080/task/",data);
   }
+
+  deleteTask(taskId:number) {
+    return this.http.delete("http://localhost:8080/task/"+taskId);
+  }
 }

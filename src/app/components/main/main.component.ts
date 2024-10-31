@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditTaskDialogContentComponent } from '../edit-task-dialog-content/edit-task-dialog-content.component';
 import {DatePipe} from '@angular/common'
 import { NewTaskDialogContentComponent } from '../new-task-dialog-content/new-task-dialog-content.component';
+import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/delete-task-dialog-content.component';
 
 
 @Component({
@@ -53,5 +54,14 @@ export class MainComponent implements OnInit {
 
   openNewDialog() {
     this.dialog.open(NewTaskDialogContentComponent);
+  }
+
+  deleteDialog(taskId:number, taskName:string) {
+    this.dialog.open(DeleteTaskDialogContentComponent,{
+      data:{
+        taskId:taskId,
+        taskName:taskName
+      }
+    });
   }
 }
