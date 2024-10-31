@@ -1,0 +1,33 @@
+<div class="container">
+    <mat-selection-list cdkDropList (cdkDropListDropped)="drop($event)" class="list-container">
+        <p class="list-container-p">
+            <label>Id</label>
+            <label>Nome</label>
+            <label>Custo</label>
+            <label>Data limite</label>
+            <label>Opções</label>
+        </p>
+        @for (task of tasks; track task) {
+
+        <mat-list-item cdkDrag>
+            <div *cdkDragPlaceholder class="list-item-placeholder"></div>
+            <div class="list-item">
+                <label> {{task.id}} </label>
+                <label> {{task.name}} </label>
+                <label> {{task.cost}} </label>
+                <label> {{task.deadline}} </label>
+
+                <div class="list-buttons">
+                    <button mat-mini-fab>
+                        <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button mat-mini-fab>
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-list-item>
+        }
+    </mat-selection-list>
+</div>

@@ -1,0 +1,47 @@
+body {
+    overflow: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    width: 60vw;
+    border: 1px solid rgb(196,39,63);
+    border-radius: 10px;
+}
+
+.list-container-p {
+    display: flex;
+    justify-content: space-around;
+    color: black;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-around;
+    color: black;
+}
+
+.list-item-placeholder {
+    background: #ccc;
+    border: 3px #999;
+    min-height: 60px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.list-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.list-buttons > button {
+    background-color: rgb(196,39,63);
+}
