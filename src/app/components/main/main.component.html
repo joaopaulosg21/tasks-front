@@ -3,16 +3,16 @@
         <p class="list-container-p">
             <label>Id</label>
             <label>Nome</label>
-            <label>Custo</label>
-            <label>Data limite</label>
-            <label>Opções</label>
+            <label class="list-container-p-label-spacer">Custo</label>
+            <label class="list-container-p-label-spacer">Data limite</label>
+            <label class="list-container-p-label-spacer">Opções</label>
         </p>
         @for (task of tasks; track task) {
 
         <mat-list-item cdkDrag>
             <div *cdkDragPlaceholder class="list-item-placeholder"></div>
             <div class="list-item">
-                <label> {{task.id}} </label>
+                <label class="label-id"> {{task.id}} </label>
                 <label> {{task.name}} </label>
                 <label> {{task.cost}} </label>
                 <label> {{task.deadline}} </label>
