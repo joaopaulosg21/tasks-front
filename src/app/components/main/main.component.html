@@ -7,7 +7,7 @@
             <label class="list-container-p-label-spacer">Data limite</label>
             <label class="list-container-p-label-spacer">Opções</label>
         </p>
-        @for (task of tasks; track task) {
+        @for (task of tasks; track task.id) {
 
         <mat-list-item cdkDrag>
             <div *cdkDragPlaceholder class="list-item-placeholder"></div>
