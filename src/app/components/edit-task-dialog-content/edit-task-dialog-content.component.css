@@ -1,0 +1,9 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-action {
+    display: flex;
+    justify-content: center;
+}

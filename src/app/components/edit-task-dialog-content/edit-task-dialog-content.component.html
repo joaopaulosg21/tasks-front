@@ -1,0 +1,28 @@
+{{data.taskId}}
+
+<mat-dialog-content>
+    <div class="form-container">
+        <mat-form-field>
+            <mat-label>Nome da tarefa</mat-label>
+            <input matInput maxlength="150" value={{data.taskName}} #name />
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always">
+            <mat-label>Custo</mat-label>
+            <input matInput value={{data.taskCost}} type="number" #cost />
+            <span matTextPrefix>$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field floatLabel="always">
+            <mat-label>Escolha uma data</mat-label>
+            <input matInput [matDatepicker]="datepicker" (dateInput)="getDate($event)" value={{data.taskDeadline}}/>
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+            </mat-datepicker>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-action">
+    <button mat-button (click)="editTask(name.value,cost.value)">Salvar</button>
+</mat-dialog-actions>
