@@ -4,8 +4,10 @@ body {
 
 .container {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-top: 10px;
+    gap: 10px;
 }
 
 .list-container {
@@ -63,4 +65,9 @@ body {
 .list-container-p-label-spacer {
     margin-left: 10% !important;
     margin-right: -2%;
+}
+
+.buttons > button{
+    background-color: rgb(196,39,63);
+    color: white;
 }

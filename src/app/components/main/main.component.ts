@@ -13,6 +13,7 @@ import { TaskService } from '../../services/task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskDialogContentComponent } from '../edit-task-dialog-content/edit-task-dialog-content.component';
 import {DatePipe} from '@angular/common'
+import { NewTaskDialogContentComponent } from '../new-task-dialog-content/new-task-dialog-content.component';
 
 
 @Component({
@@ -48,5 +49,9 @@ export class MainComponent implements OnInit {
         taskDeadline:taskDeadline
       }
     });
+  }
+
+  openNewDialog() {
+    this.dialog.open(NewTaskDialogContentComponent);
   }
 }

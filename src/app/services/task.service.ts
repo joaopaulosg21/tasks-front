@@ -17,4 +17,8 @@ export class TaskService {
   editTask(data: TaskRegisterData, taskId:number) {
     return this.http.patch("http://localhost:8080/task/"+taskId,data)
   }
+
+  addTask(data:TaskRegisterData) {
+    return this.http.post("http://localhost:8080/task/",data);
+  }
 }
