@@ -33,37 +33,16 @@ export class MainComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
-    //Pega o id dos elementos que estão sendo trocados
-    //const idfirst = event.previousContainer.element.nativeElement.textContent?.split(" ")[2];
-    //const idSecond = event.previousContainer.element.nativeElement.textContent?.split(" ")[11];
 
-    console.log(event.previousIndex)
-    console.log(event.currentIndex)
     //Faz o swamp entre os valores de presentationOrder
+    //Pega as tasks que serão trocadas
     const firstTask = this.tasks.filter(i => i.presentationOrder == event.previousIndex)[0];
     const secondTask = this.tasks.filter(i => i.presentationOrder == event.currentIndex)[0];
     this.swap(firstTask,secondTask);
 
     //Altera o atributo presentationOrder para atualizar a posição de exibição do elemento 
-    this.taskService.updateOrder(Number(firstTask.id), firstTask.presentationOrder).subscribe({
-      next: (data: any) => {
-        console.log("Atualizado");
-        this.ngOnInit();
-      },
-      error: err => {
-        console.log("DEU ERRO " + err.message);
-      }
-    });
-
-    this.taskService.updateOrder(Number(secondTask.id), secondTask.presentationOrder).subscribe({
-      next: (data: any) => {
-        console.log("Atualizado");
-        this.ngOnInit();
-      },
-      error: err => {
-        console.log("DEU ERRO " + err.message);
-      }
-    });
+    this.updateOrder(firstTask);
+    this.updateOrder(secondTask);
   }
 
   findAll() {
@@ -100,5 +79,17 @@ export class MainComponent implements OnInit {
     const temp = firstTask.presentationOrder;
     firstTask.presentationOrder = secondTask.presentationOrder;
     secondTask.presentationOrder = temp;
+  }
+
+  updateOrder(task:any) {
+    this.taskService.updateOrder(Number(task.id), task.presentationOrder).subscribe({
+      next: (data: any) => {
+        console.log("Atualizado");
+        this.ngOnInit();
+      },
+      error: err => {
+        console.log("DEU ERRO " + err.message);
+      }
+    });
   }
 }
