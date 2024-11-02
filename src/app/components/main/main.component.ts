@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TaskService } from '../../services/task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskDialogContentComponent } from '../edit-task-dialog-content/edit-task-dialog-content.component';
-import { DatePipe,CurrencyPipe } from '@angular/common'
+import { DatePipe,CurrencyPipe,CommonModule } from '@angular/common'
 import { NewTaskDialogContentComponent } from '../new-task-dialog-content/new-task-dialog-content.component';
 import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/delete-task-dialog-content.component';
 
@@ -20,7 +20,7 @@ import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CdkDrag, CdkDragPlaceholder, CdkDropList, MatListModule, MatIconModule, MatButtonModule, DatePipe,CurrencyPipe],
+  imports: [CdkDrag, CdkDragPlaceholder, CdkDropList, MatListModule, MatIconModule, MatButtonModule, DatePipe,CurrencyPipe,CommonModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
