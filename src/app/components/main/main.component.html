@@ -14,16 +14,16 @@
             <div class="list-item">
                 <label class="label-id"> {{task.id}} </label>
                 <label> {{task.name}} </label>
-                <label> {{task.cost}} </label>
+                <label> {{task.cost | currency: 'BRL'}} </label>
                 <label> {{task.deadline | date:'dd/MM/yyyy' }} </label>
 
                 <div class="list-buttons">
-                    <button mat-mini-fab (click)="openEditDialog(task.id, task.name,task.cost,task.deadline)">
-                        <mat-icon>edit</mat-icon>
+                    <button mat-icon-button (click)="openEditDialog(task.id, task.name,task.cost,task.deadline)">
+                        <mat-icon class="icon">edit</mat-icon>
                     </button>
 
-                    <button mat-mini-fab (click)="deleteDialog(task.id, task.name)">
-                        <mat-icon>delete</mat-icon>
+                    <button mat-icon-button (click)="deleteDialog(task.id, task.name)">
+                        <mat-icon class="icon">delete</mat-icon>
                     </button>
                 </div>
             </div>
