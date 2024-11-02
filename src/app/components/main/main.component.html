@@ -8,7 +8,27 @@
             <label class="list-container-p-label-spacer">Opções</label>
         </p>
         @for (task of tasks; track task.id) {
+        @if(task.cost >= 1000) {
+        <mat-list-item cdkDrag class="costColor">
+            <div *cdkDragPlaceholder class="list-item-placeholder"></div>
+            <div class="list-item">
+                <label class="label-id"> {{task.id}} </label>
+                <label> {{task.name}} </label>
+                <label> {{task.cost | currency: 'BRL'}} </label>
+                <label> {{task.deadline | date:'dd/MM/yyyy' }} </label>
 
+                <div class="list-buttons">
+                    <button mat-icon-button (click)="openEditDialog(task.id, task.name,task.cost,task.deadline)">
+                        <mat-icon class="icon">edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button (click)="deleteDialog(task.id, task.name)">
+                        <mat-icon class="icon">delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-list-item>
+        }@else {
         <mat-list-item cdkDrag>
             <div *cdkDragPlaceholder class="list-item-placeholder"></div>
             <div class="list-item">
@@ -28,6 +48,7 @@
                 </div>
             </div>
         </mat-list-item>
+        }
         }
     </mat-selection-list>
     <div class="buttons">

@@ -25,6 +25,7 @@ import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/
   styleUrl: './main.component.css'
 })
 export class MainComponent implements OnInit {
+  className = "";
   tasks!: any[];
   constructor(private taskService: TaskService, private dialog: MatDialog) { }
   ngOnInit(): void {
