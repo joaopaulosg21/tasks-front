@@ -34,7 +34,6 @@ export class MainComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
-
     //Faz o swamp entre os valores de presentationOrder
     //Pega as tasks que serão trocadas
     const firstTask = this.tasks.filter(i => i.presentationOrder == event.previousIndex)[0];
@@ -74,7 +73,17 @@ export class MainComponent implements OnInit {
         taskId: taskId,
         taskName: taskName
       }
-    }).afterClosed().subscribe(() => this.ngOnInit());;
+    }).afterClosed().subscribe(() => {
+      this.findAll();
+      setTimeout(() => {
+        this.tasks.forEach((task, index) => {
+          if (task.presentationOrder != index) {
+            task.presentationOrder = index;
+            this.updateOrder(task);
+          }
+        });
+      }, 1000);
+    });
   }
 
   swap(firstTask: any, secondTask: any) {
