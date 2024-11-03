@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TaskService } from '../../services/task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskDialogContentComponent } from '../edit-task-dialog-content/edit-task-dialog-content.component';
-import { DatePipe,CurrencyPipe,CommonModule } from '@angular/common'
+import { DatePipe, CurrencyPipe, CommonModule } from '@angular/common'
 import { NewTaskDialogContentComponent } from '../new-task-dialog-content/new-task-dialog-content.component';
 import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/delete-task-dialog-content.component';
 
@@ -20,7 +20,7 @@ import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CdkDrag, CdkDragPlaceholder, CdkDropList, MatListModule, MatIconModule, MatButtonModule, DatePipe,CurrencyPipe,CommonModule],
+  imports: [CdkDrag, CdkDragPlaceholder, CdkDropList, MatListModule, MatIconModule, MatButtonModule, DatePipe, CurrencyPipe, CommonModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -39,7 +39,7 @@ export class MainComponent implements OnInit {
     //Pega as tasks que serão trocadas
     const firstTask = this.tasks.filter(i => i.presentationOrder == event.previousIndex)[0];
     const secondTask = this.tasks.filter(i => i.presentationOrder == event.currentIndex)[0];
-    this.swap(firstTask,secondTask);
+    this.swap(firstTask, secondTask);
 
     //Altera o atributo presentationOrder para atualizar a posição de exibição do elemento 
     this.updateOrder(firstTask);
@@ -60,11 +60,12 @@ export class MainComponent implements OnInit {
         taskCost: taskCost,
         taskDeadline: taskDeadline
       }
-    });
+    }).afterClosed().subscribe(() => this.ngOnInit());
   }
 
   openNewDialog() {
-    this.dialog.open(NewTaskDialogContentComponent);
+    this.dialog.open(NewTaskDialogContentComponent)
+      .afterClosed().subscribe(() => this.ngOnInit());
   }
 
   deleteDialog(taskId: number, taskName: string) {
@@ -73,7 +74,7 @@ export class MainComponent implements OnInit {
         taskId: taskId,
         taskName: taskName
       }
-    });
+    }).afterClosed().subscribe(() => this.ngOnInit());;
   }
 
   swap(firstTask: any, secondTask: any) {
@@ -82,7 +83,7 @@ export class MainComponent implements OnInit {
     secondTask.presentationOrder = temp;
   }
 
-  updateOrder(task:any) {
+  updateOrder(task: any) {
     this.taskService.updateOrder(Number(task.id), task.presentationOrder).subscribe({
       next: (data: any) => {
         console.log("Atualizado");
