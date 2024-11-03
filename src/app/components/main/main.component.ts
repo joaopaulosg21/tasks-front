@@ -15,6 +15,7 @@ import { EditTaskDialogContentComponent } from '../edit-task-dialog-content/edit
 import { DatePipe, CurrencyPipe, CommonModule } from '@angular/common'
 import { NewTaskDialogContentComponent } from '../new-task-dialog-content/new-task-dialog-content.component';
 import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/delete-task-dialog-content.component';
+import { Task } from '../../../types/Task';
 
 
 @Component({
@@ -26,7 +27,7 @@ import { DeleteTaskDialogContentComponent } from '../delete-task-dialog-content/
 })
 export class MainComponent implements OnInit {
   className = "";
-  tasks!: any[];
+  tasks!: Task[];
   constructor(private taskService: TaskService, private dialog: MatDialog) { }
   ngOnInit(): void {
     this.findAll();
@@ -36,8 +37,8 @@ export class MainComponent implements OnInit {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
     //Faz o swamp entre os valores de presentationOrder
     //Pega as tasks que serão trocadas
-    const firstTask = this.tasks.filter(i => i.presentationOrder == event.previousIndex)[0];
-    const secondTask = this.tasks.filter(i => i.presentationOrder == event.currentIndex)[0];
+    const firstTask: Task = this.tasks.filter(i => i.presentationOrder == event.previousIndex)[0];
+    const secondTask: Task = this.tasks.filter(i => i.presentationOrder == event.currentIndex)[0];
     this.swap(firstTask, secondTask);
 
     //Altera o atributo presentationOrder para atualizar a posição de exibição do elemento 
@@ -51,7 +52,7 @@ export class MainComponent implements OnInit {
     });
   }
 
-  openEditDialog(taskId: number, taskName: string, taskCost: string, taskDeadline: string) {
+  openEditDialog(taskId: number, taskName: string, taskCost: number, taskDeadline: string) {
     this.dialog.open(EditTaskDialogContentComponent, {
       data: {
         taskId: taskId,
@@ -86,13 +87,13 @@ export class MainComponent implements OnInit {
     });
   }
 
-  swap(firstTask: any, secondTask: any) {
+  swap(firstTask: Task, secondTask: Task) {
     const temp = firstTask.presentationOrder;
     firstTask.presentationOrder = secondTask.presentationOrder;
     secondTask.presentationOrder = temp;
   }
 
-  updateOrder(task: any) {
+  updateOrder(task: Task) {
     this.taskService.updateOrder(Number(task.id), task.presentationOrder).subscribe({
       next: (data: any) => {
         console.log("Atualizado");
