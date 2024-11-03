@@ -35,7 +35,7 @@ export class NewTaskDialogContentComponent {
         this.snackBar.open("Tarefa `" + data.name + "` registrada com sucesso",undefined,{duration:2000});
       },
       error: err => {
-        console.log("DEU ERRO " + err.message);
+        this.snackBar.open(err.error.message, undefined, {duration:2000});
       }
     })
   }

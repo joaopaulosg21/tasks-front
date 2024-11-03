@@ -43,7 +43,7 @@ export class EditTaskDialogContentComponent implements OnInit {
         this.snackBar.open(data.message, undefined, { duration: 2000 });
       },
       error: err => {
-        console.log("DEU ERRO " + err.message);
+       this.snackBar.open(err.error.message, undefined, {duration:2000});
       }
     })
   }
