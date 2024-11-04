@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TaskRegisterData } from '../../types/TaskRegisterData';
+import api from '../../env/env';
 
 @Injectable({
   providedIn: 'root'
@@ -9,24 +10,25 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
+  api:string = api;
 
   findAll() {
-    return this.http.get("http://localhost:8080/task/");
+    return this.http.get(`${this.api}/task/`);
   }
 
   editTask(data: TaskRegisterData, taskId: number) {
-    return this.http.patch("http://localhost:8080/task/" + taskId, data)
+    return this.http.patch(`${this.api}/task/${taskId}`, data)
   }
 
   addTask(data: TaskRegisterData) {
-    return this.http.post("http://localhost:8080/task/", data);
+    return this.http.post(`${this.api}/task/`, data);
   }
 
   deleteTask(taskId: number) {
-    return this.http.delete("http://localhost:8080/task/" + taskId);
+    return this.http.delete(`${this.api}/task/${taskId}`);
   }
 
   updateOrder(taskId: number, presentationOrder: number) {
-    return this.http.patch("http://localhost:8080/task/order/" + taskId, { presentationOrder: presentationOrder });
+    return this.http.patch(`${this.api}/task/order/${taskId}`, { presentationOrder: presentationOrder });
   }
 }
