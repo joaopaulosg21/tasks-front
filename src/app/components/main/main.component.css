@@ -32,14 +32,14 @@
 .list-buttons {
     display: flex;
     gap: 10px;
-    width: 20%;
+    width: calc(100%/5);
     justify-content: center;
+    margin-right: -10px;
 }
 
 .list-buttons>button {
     background-color: rgb(196, 39, 63);
 }
-
 
 .list-item {
     display: flex;
@@ -65,4 +65,50 @@ label {
 
 .costColor {
     background-color: #fd7b7b;
+}
+
+.list-item-label-id {
+    margin-left: -10px;
+}
+
+.list-item-label-cost {
+    margin-left: 20px;
+}
+
+@media (max-width:500px) {
+    .list-container {
+        width: 100%;
+    }
+
+    .list-container-p-label-id {
+        width: 10%;
+    }
+    
+    .list-item-label-id {
+        margin-left: -5%;
+    }
+
+    .list-item-label-name {
+        width: 10%;
+    }
+
+    .list-item-label-cost {
+        width: 25%;
+    }
+
+    .list-buttons > button{
+        width: 30px;
+        height: 30px;
+    }
+
+    .list-buttons {
+        gap: 3px;
+        margin-left: 20px;
+    }
+
+    .icon {
+        position: absolute;
+        bottom: 5px;
+        left: -5px;
+    }
 }

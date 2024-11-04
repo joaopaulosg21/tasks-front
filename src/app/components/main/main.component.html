@@ -1,7 +1,7 @@
 <div class="container">
     <mat-selection-list cdkDropList (cdkDropListDropped)="drop($event)" class="list-container">
         <p class="list-container-p">
-            <label>Id</label>
+            <label class="list-container-p-label-id">Id</label>
             <label>Nome</label>
             <label>Custo</label>
             <label>Data limite</label>
@@ -11,9 +11,9 @@
             <mat-list-item cdkDrag [ngClass]="{'costColor':task.cost >= 1000}">
                 <div *cdkDragPlaceholder class="list-item-placeholder"></div>
                 <div class="list-item">
-                    <label class="label-id"> {{task.id}} </label>
-                    <label> {{task.name}} </label>
-                    <label> {{task.cost | currency: 'BRL'}} </label>
+                    <label class="list-item-label-id"> {{task.id}} </label>
+                    <label class="list-item-label-name"> {{task.name}} </label>
+                    <label class="list-item-label-cost"> {{task.cost | currency: 'BRL'}} </label>
                     <label> {{task.deadline | date:'dd/MM/yyyy' }} </label>
     
                     <div class="list-buttons">
