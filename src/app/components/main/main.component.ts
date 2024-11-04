@@ -60,12 +60,16 @@ export class MainComponent implements OnInit {
         taskCost: taskCost,
         taskDeadline: taskDeadline
       }
-    }).afterClosed().subscribe(() => this.ngOnInit());
+    }).afterClosed().subscribe(() => {
+      setTimeout(() => this.ngOnInit(), 3000);
+    });
   }
 
   openNewDialog() {
     this.dialog.open(NewTaskDialogContentComponent)
-      .afterClosed().subscribe(() => this.ngOnInit());
+      .afterClosed().subscribe(() => {
+        setTimeout(() => this.ngOnInit(), 3000);
+      });
   }
 
   deleteDialog(taskId: number, taskName: string) {
@@ -75,7 +79,8 @@ export class MainComponent implements OnInit {
         taskName: taskName
       }
     }).afterClosed().subscribe(() => {
-      this.findAll();
+      setTimeout(() => this.findAll(),2000);
+
       setTimeout(() => {
         this.tasks.forEach((task, index) => {
           if (task.presentationOrder != index) {
